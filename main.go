@@ -1,7 +1,11 @@
 package main
 
-import "management-personal/routes"
+import (
+	"management-personal/database"
+	"management-personal/routes"
+)
 
 func main() {
+	database.Connect()
 	routes.Api()
 }
