@@ -11,7 +11,7 @@ import (
 var DB *sql.DB
 
 func Connect() {
-	connection := "root:root@tcp(127.0.0.1:3306)/management_personal"
+	connection := "root:root@tcp(mysql8:3306)/management_personal"
 	db, err := sql.Open("mysql", connection)
 
 	if err != nil {
