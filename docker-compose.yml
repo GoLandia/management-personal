@@ -1,20 +1,24 @@
-version: '3.8'
+version: '3.9'
 
 services:
-  app:
-    build:
-      context: docker
-      dockerfile: ./docker/Dockerfile
-    container_name: go_app
-    ports:
-      - "8080:8080"
-    restart: always
-    networks:
-      - golandia
+  go-app:
+    container_name: go-app
+    image: golang:1.21
     volumes:
-      - ../:/app
+      - .:/go/src/management-personal
+    ports:
+      - 8080:8080
+    command: sh -c "cd /go/src/management-personal && go run main.go"
 
-networks:
-  golandia:
-    name: app
-    driver: bridge
+  mysql:
+    container_name: mysql8
+    image: mysql:8
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "management-personal"
+      MYSQL_USER: "dev"
+      MYSQL_PASSWORD: "dev"
