@@ -8,10 +8,12 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+type Database struct{}
+
 var DB *sql.DB
 
 func Connect() {
-	connection := "root:root@tcp(mysql8:3306)/management_personal"
+	connection := "dev:dev@tcp(mysql8:3306)/management-personal"
 	db, err := sql.Open("mysql", connection)
 
 	if err != nil {
