@@ -10,6 +10,7 @@ type Config struct {
 	DbUser     string `envconfig:"DB_USER"`
 	DbPassword string `envconfig:"DB_PASSWORD"`
 	DbPort     int    `envconfig:"DB_PORT"`
+	ApiPort    string `envconfig:"API_PORT"`
 }
 
 var Env Config

@@ -1,4 +1,4 @@
-package routes
+package api
 
 import (
 	"github.com/gin-gonic/gin"
@@ -6,13 +6,10 @@ import (
 	"time"
 )
 
-func Api() {
-	route := gin.Default()
-
-	prefix := route.Group("/api/")
+func (s *Service) GetRoutes() {
+	prefix := s.Group("/api/")
 
 	prefix.GET("ping", handlePing)
-	route.Run()
 }
 
 func handlePing(c *gin.Context) {

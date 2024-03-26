@@ -1,19 +1,22 @@
 package main
 
 import (
-	"log"
+	"management-personal/api"
 	"management-personal/config"
 	"management-personal/database"
-	"management-personal/routes"
+	"management-personal/utils"
 )
 
 func main() {
-	if err := config.StartConfig(); err != nil {
-		log.Fatal(err)
-	}
+	var err error
+
+	err = config.StartConfig()
+	utils.FatalError(err)
 
 	d := database.Database{}
-	database.Connect(&d)
+	err = database.Connect(&d)
+	utils.FatalError(err)
 
-	routes.Api()
+	service := api.NewService()
+	service.Start()
 }

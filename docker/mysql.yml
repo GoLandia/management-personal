@@ -1,0 +1,15 @@
+version: '3.15'
+
+services:
+  mysql:
+    container_name: mysql8
+    image: mysql:8
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "management-personal"
+      MYSQL_USER: "dev"
+      MYSQL_PASSWORD: "dev"
